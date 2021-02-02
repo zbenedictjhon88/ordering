@@ -68,7 +68,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
              *	Note: the script is written in pure javascript and does not depend on thirdparty library
              **/
             'use strict';
-
             var classHolder = document.getElementsByTagName("BODY")[0],
                     /** 
                      * Load from localstorage
@@ -95,7 +94,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 cssfile.rel = 'stylesheet';
                 cssfile.href = themeURL;
                 document.getElementsByTagName('head')[0].appendChild(cssfile);
-
             } else if (themeSettings.themeURL && document.getElementById('mytheme'))
             {
                 document.getElementById('mytheme').href = themeSettings.themeURL;
@@ -134,11 +132,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 <!-- BEGIN Left Aside -->
                 <aside class="page-sidebar">
                     <div class="page-logo">
-                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-                            <img src="img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" onclick="getAllProducts()">
+                            <img src="img/logo.png" alt="SmartAdmin WebApp">
                             <span class="page-logo-text mr-1">Title</span>
                             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
-                            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+                            <!--<i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>-->
                         </a>
                     </div>
 
@@ -161,14 +159,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         <!-- 
                                                 TIP: The menu items are not auto translated. You must have a residing lang file associated with the menu saved inside dist/media/data with reference to each 'data-i18n' attribute.
                         -->
-                        <ul id="js-nav-menu" class="nav-menu">
+                        <ul id="js-nav-menu" class="nav-menu categories">
                             <li class="nav-title">Categories</li>
-                            <li class="active">
-                                <a href="blank.html" title="Blank Project" data-filter-tags="blank page">
-                                    <i class="fal fa-globe"></i>
-                                    <span class="nav-link-text" data-i18n="nav.blankpage">Blank Project</span>
-                                </a>
-                            </li>
                         </ul>
                         <div class="filter-message js-filter-message bg-success-600"></div>
                     </nav>
@@ -201,9 +193,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
                             <!-- app notification -->
                             <div>
-                                <a href="#" class="header-icon" data-toggle="modal" data-target=".your-cart-modal">
+                                <a href="#" class="header-icon" onclick="showYourCartModal();">
                                     <i class="fa fa-cart-plus"></i>
-                                    <span class="badge badge-icon">11</span>
+                                    <span class="badge badge-icon" id="notif_cart">0</span>
                                 </a>
 
                             </div>
@@ -223,12 +215,13 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         </div>
 
                         <!-- Your main content goes below here: -->
-                        <div class="row mb-g">
+                        <div class="row" id="products">
                             <div class="col-lg-3">
                                 <div class="card border m-auto m-lg-0" style="max-width: 18rem;">
                                     <img src="img/card-backgrounds/cover-3-lg.png" class="card-img-top" alt="...">                                  
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Toyo</li>
+                                        <li class="list-group-item">Price  <span class="pull-right">15</span></li>
                                     </ul>
                                     <div class="card-body">
                                         <a href="#" class="card-link" data-toggle="modal" data-target=".buy-now-modal">Buy Now</a>
@@ -249,54 +242,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         </div>
                     </footer>
                     <!-- END Page Footer -->
-
-                    <!-- BEGIN Shortcuts -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <ul class="app-list w-auto h-auto p-0 text-left">
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Home
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
-                                                    <i class="ni ni-envelope icon-stack-1x text-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Inbox
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Add More
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Shortcuts -->
 
                     <!-- BEGIN Modal Area -->
                     <!-- Buy Now -->
@@ -338,7 +283,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                         </h4>
                                         <div class="form-group">
                                             <label>Product Name</label>
-                                            <input type="text" class="form-control" value="toyo" readonly="">
+                                            <input type="text" class="form-control" value="" readonly="" id="product_name_field">
                                         </div>
                                         <div class="form-group">
                                             <label>Quantity</label>
@@ -346,8 +291,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".check-out-modal">Cash on Delivery</button>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".check-out-modal">Pick Up</button>
+                                        <button type="button" class="btn btn-secondary" onclick="showCheckOutModal(0, 'Cash on Delivery');">Cash on Delivery</button>
+                                        <button type="button" class="btn btn-primary" onclick="showCheckOutModal(1, 'Pick Up');">Pick Up</button>
                                     </div>
                                 </form>
                             </div>
@@ -365,22 +310,19 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     </button>                                   
                                 </div>
                                 <form novalidate="">
-                                    <div class="modal-body">
-                                        <div class="card border m-auto m-lg-0" style="max-width: 18rem;">
-                                            <img src="img/card-backgrounds/cover-3-lg.png" class="card-img-top" alt="...">                                  
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">Toyo</li>
-                                            </ul>
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label>Quantity</label>
-                                                    <input type="number" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="modal-body p-0">
+                                        <img class="card-img-top" id="product_photo">     
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" id="cart_pn_text"></li>
+                                            <li class="list-group-item">Price <span id="cart_pr_text" class="pull-right"></span></li>
+                                            <li class="list-group-item">
+                                                <label>Quantity</label>
+                                                <input type="number" class="form-control" min="0" id="quantity">
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                        <button type="button" class="btn btn-primary" onclick="addToCartSession();">Add to Cart</button>
                                     </div>
                                 </form>
                             </div>
@@ -424,21 +366,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <i class="fal fa-plus fa-fw"></i>
                                             Product Details
                                         </h4>
-                                        <div class="row form-group">
-                                            <div class="col-lg-7">
-                                                <label>Product Name</label>
-                                                <input type="text" class="form-control" value="toyo" readonly="">
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <label>Quantity</label>
-                                                <input type="number" class="form-control" value="5">
-                                            </div>
-
-                                        </div>
+                                        <div class="row form-group" id="order_products"></div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".check-out-modal">Cash on Delivery</button>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".check-out-modal">Pick Up</button>
+                                        <button type="button" class="btn btn-secondary" onclick="showCheckOutModal(0, 'Cash on Delivery');">Cash on Delivery</button>
+                                        <button type="button" class="btn btn-primary" onclick="showCheckOutModal(1, 'Pick Up');">Pick Up</button>
                                     </div>
                                 </form>
                             </div>
@@ -461,19 +393,14 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="2">Payment Method: Pick Up</th>
+                                                    <th colspan="2">Payment Method: <span id="payment_method"></span></th>
                                                 </tr>
                                                 <tr>
                                                     <th style="width: 80%">Items</th>
                                                     <th>Price</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Toyo</td>
-                                                    <td class="pull-right">17<br />x2</td>
-                                                </tr>
-                                            </tbody>
+                                            <tbody id="receipt_order"></tbody>
                                         </table>
                                     </div>
                                     <div class="modal-footer">
@@ -571,22 +498,261 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         </nav>
         <!-- END Quick Menu -->
 
-        <!-- base vendor bundle: 
-                         DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
-                                                + pace.js (recommended)
-                                                + jquery.js (core)
-                                                + jquery-ui-cust.js (core)
-                                                + popper.js (core)
-                                                + bootstrap.js (core)
-                                                + slimscroll.js (extension)
-                                                + app.navigation.js (core)
-                                                + ba-throttle-debounce.js (core)
-                                                + waves.js (extension)
-                                                + smartpanels.js (extension)
-                                                + src/../jquery-snippets.js (core) -->
+
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
-        <!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->
+        <script type="text/javascript">
+                                            $(function () {
+
+//                                                sessionStorage.clear();
+                                                getAllProducts();
+                                                getCategories();
+                                                var notifCart = Object.keys(sessionStorage).length;
+
+                                                $('#notif_cart').text(notifCart);
+                                            });
+
+                                            function getCategories() {
+
+                                                $.ajax({
+                                                    url: 'http://localhost/ordering-api/index.php?r=site/categories',
+                                                    type: 'POST',
+                                                    success: function (res) {
+                                                        var response = JSON.parse(res);
+                                                        for (var i = 0; i < response.data.length; i++) {
+
+                                                            var idName = response.data[i]['category'].replaceAll(' ', '_');
+                                                            $('.categories').append('<li id="li_' + idName.toLowerCase() + '" class="">' +
+                                                                    '<a href="#" title="' + response.data[i]['category'] + '" id="' + idName.toLowerCase() + '" data-filter-tags="' + response.data[i]['category'].toLowerCase() + '" onclick="getProducts(this)">' +
+                                                                    '<span class="nav-link-text" data-i18n="nav.blankpage">' + response.data[i]['category'] + '</span>' +
+                                                                    '</a>' +
+                                                                    '</li>');
+                                                        }
+
+                                                    },
+                                                    error: function (error) {
+                                                        console.log("Internal Code Error.");
+                                                    }
+                                                });
+                                            }
+
+                                            function getProducts(data) {
+
+                                                $.ajax({
+                                                    url: 'http://localhost/ordering-api/index.php?r=site/products',
+                                                    type: 'GET',
+                                                    data: {'category_name': data.title},
+                                                    beforeSend: function () {
+                                                        $('#products').html('');
+                                                    },
+                                                    success: function (res) {
+
+                                                        var response = JSON.parse(res);
+
+                                                        if (response.data.length === 0) {
+                                                            $('#products').append('<div class="col-lg-12 mb-g"><div class="alert alert-warning">No products available.</div></div>');
+                                                        }
+
+                                                        for (var i = 0; i < response.data.length; i++) {
+
+                                                            $('#products').append('<div class="col-lg-3 mb-g">' +
+                                                                    '<div class="card border m-auto m-lg-0" style="max-width: 18rem;">' +
+                                                                    '<img class="card-img-top" alt="' + response.data[i]['description'] + '" id="product_photo_' + response.data[i]['id'] + '">' +
+                                                                    '<ul class="list-group list-group-flush">' +
+                                                                    '<li class="list-group-item" id="product_name_' + response.data[i]['id'] + '">' + response.data[i]['description'] + '</li>' +
+                                                                    '<li class="list-group-item">Price <span id="product_price' + response.data[i]['id'] + '" class="pull-right">₱ ' + response.data[i]['price'] + '</span></li>' +
+                                                                    '</ul>' +
+                                                                    '<div class="card-body">' +
+                                                                    '<a href="#" class="card-link" onclick=\"showBuyNowModal(' + response.data[i]['id'] + ');\">Buy Now</a>' +
+                                                                    '<a href="#" class="card-link" onclick=\"showAddToCartModal(' + response.data[i]['id'] + ');\">Add to Cart</a>' +
+                                                                    ' </div>' +
+                                                                    ' </div>' +
+                                                                    '</div>');
+
+                                                            getProductPhoto(response.data[i]['id'], 0);
+                                                        }
+
+                                                    },
+                                                    error: function (error) {
+                                                        console.log(error);
+                                                    }
+                                                });
+                                            }
+
+                                            function getAllProducts() {
+
+                                                $.ajax({
+                                                    url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
+                                                    type: 'POST',
+                                                    beforeSend: function () {
+                                                        $('#products').html('');
+                                                    },
+                                                    success: function (res) {
+
+                                                        var response = JSON.parse(res);
+                                                        for (var i = 0; i < response.data.length; i++) {
+
+                                                            $('#products').append('<div class="col-lg-3 mb-g">' +
+                                                                    '<div class="card border m-auto m-lg-0" style="max-width: 18rem;">' +
+                                                                    '<img class="card-img-top" alt="' + response.data[i]['description'] + '" id="product_photo_' + response.data[i]['id'] + '">      ' +
+                                                                    '<ul class="list-group list-group-flush">' +
+                                                                    '<li class="list-group-item" id="product_name_' + response.data[i]['id'] + '">' + response.data[i]['description'] + '</li>' +
+                                                                    '<li class="list-group-item">Price <span id="product_price' + response.data[i]['id'] + '" class="pull-right">₱ ' + response.data[i]['price'] + '</span></li>' +
+                                                                    '</ul>' +
+                                                                    ' <div class="card-body">' +
+                                                                    '<a href="#" class="card-link" onclick=\"showBuyNowModal(' + response.data[i]['id'] + ');\">Buy Now</a>' +
+                                                                    '<a href="#" class="card-link" onclick=\"showAddToCartModal(' + response.data[i]['id'] + ');\">Add to Cart</a>' +
+                                                                    ' </div>' +
+                                                                    ' </div>' +
+                                                                    '</div>');
+
+                                                            getProductPhoto(response.data[i]['id'], 0);
+                                                        }
+
+                                                    },
+                                                    error: function (error) {
+                                                        console.log(error);
+                                                    }
+                                                });
+                                            }
+
+                                            function getProductPhoto(id, num) {
+
+                                                $.ajax({
+                                                    async: false,
+                                                    url: 'http://localhost/ordering-api/index.php?r=site/productPhoto',
+                                                    type: 'POST',
+                                                    data: {'product_id': id},
+                                                    beforeSend: function () {
+                                                        // $('#products').html('');
+                                                    },
+                                                    success: function (data) {
+                                                        if (num === 0) {
+                                                            $('#product_photo_' + id).attr('src', 'data:image/jpg;base64,' + data);
+                                                        } else {
+                                                            $('#product_photo').attr('src', 'data:image/jpg;base64,' + data);
+                                                        }
+
+                                                    },
+                                                    error: function (error) {
+                                                        console.log('error');
+                                                    }
+                                                });
+                                            }
+
+                                            function showBuyNowModal(id) {
+                                                var productName = $('#product_name_' + id).text();
+                                                $('#product_name_field').val(productName);
+                                                $('.buy-now-modal').modal('show');
+                                                console.log(productName);
+                                            }
+
+                                            function showAddToCartModal(id) {
+                                                var productName = $('#product_name_' + id).text();
+                                                var productPrice = $('#product_price' + id).text();
+
+                                                getProductPhoto(id, 1);
+
+                                                $('#cart_pn_text').text(productName);
+                                                $('#cart_pr_text').text(productPrice);
+                                                $('.add-to-cart-modal').modal('show');
+                                            }
+
+                                            function showCheckOutModal(num, paymentMethod) {
+                                                $('#payment_method').text(paymentMethod);
+                                                $('#receipt_order').html('');
+                                                var totalAmount = 0;
+                                                for (var i = 0; i < Object.keys(sessionStorage).length; i++) {
+
+                                                    var fieldName = Object.keys(sessionStorage)[i];
+                                                    var fieldValue = sessionStorage.getItem(fieldName);
+
+                                                    var matches = fieldName.match(/(\d+)/);
+                                                    if (matches !== null) {
+                                                        var fn = fieldName.replaceAll('_', ' ').replaceAll(matches[0], '');
+
+                                                    }
+
+                                                    console.log('Field Name: ' + fieldName + '\nField Value: ' + fieldValue);
+
+                                                    $('#receipt_order').append('<tr>' +
+                                                            '<td>' + fn + ' <br />Quantity</td>' +
+                                                            '<td>' + matches[0] + ' <br /> x' + fieldValue + '</td>' +
+                                                            '</tr>');
+
+                                                    var amt = parseInt(matches[0]) * parseInt(fieldValue);
+                                                    var totalAmount = totalAmount + amt;
+
+                                                }
+
+                                                if (num === 0) {
+                                                    $('#receipt_order').append('<tr>' +
+                                                            '<td>Delivery Charge: </td>' +
+                                                            '<td>50</td>' +
+                                                            '</tr>');
+
+                                                    $('#receipt_order').append('<tr>' +
+                                                            '<td>Total Amount: </td>' +
+                                                            '<td>' + totalAmount + '</td>' +
+                                                            '</tr>');
+                                                }
+
+
+                                                $('.check-out-modal').modal('show');
+                                            }
+
+                                            function addToCartSession() {
+                                                var pn = $('#cart_pn_text').text();
+                                                var pr = $('#cart_pr_text').text();
+                                                var qty = $('#quantity').val();
+                                                var matches = pr.match(/(\d+)/);
+
+                                                setSession(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
+
+                                                var notifCart = Object.keys(sessionStorage).length;
+                                                $('#notif_cart').text(notifCart);
+
+                                                $('.add-to-cart-modal').modal('hide');
+                                            }
+
+                                            function showYourCartModal() {
+                                                var notifCart = Object.keys(sessionStorage).length;
+                                                if (notifCart !== 0) {
+                                                    $('#order_products').html('');
+                                                    for (var i = 0; i < Object.keys(sessionStorage).length; i++) {
+
+                                                        var fieldName = Object.keys(sessionStorage)[i];
+                                                        var fieldValue = sessionStorage.getItem(fieldName);
+
+                                                        var matches = fieldName.match(/(\d+)/);
+                                                        if (matches !== null) {
+                                                            var fn = fieldName.replaceAll('_', ' ').replaceAll(matches[0], '');
+//                                                            pn.replaceAll(' ', '_') + '_' + matches[0]
+                                                        }
+
+                                                        console.log('Field Name : ' + fieldName + '\nField Value: ' + fieldValue);
+
+                                                        $('#order_products').append(' <div class="col-lg-7">' +
+                                                                '<label>Product Name</label>' +
+                                                                '<input type="text" class="form-control" value="' + fn + '" readonly="">' +
+                                                                '</div>' +
+                                                                '<div class="col-lg-5">' +
+                                                                '<label>Quantity</label>' +
+                                                                '<input type="number" class="form-control" value="' + fieldValue + '" id="' + fieldName + '" onkeyup="setSession(this);\">' +
+                                                                '</div>');
+
+                                                    }
+
+                                                    $('.your-cart-modal').modal('show');
+                                                }
+                                            }
+
+                                            function setSession(data) {
+                                                sessionStorage.setItem(data.id, data.value);
+                                            }
+
+
+        </script>
     </body>
     <!-- END Body -->
 </html>
