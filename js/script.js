@@ -165,6 +165,11 @@ function showAddToCartModal(id) {
 }
 
 function showCheckOutModal(num, paymentMethod) {
+    var buyNowQty = $('#buy_now_qty').val();
+    var addToCartQty = $('.add_to_cart_qty').val();
+    if (buyNowQty === '' || addToCartQty === '' || buyNowQty === 0 || addToCartQty === 0) {
+        return false;
+    }
 
     $('#payment_method').text(paymentMethod);
     $('#receipt_order').html('');
@@ -235,6 +240,10 @@ function addToCartSession() {
 
     console.log(pn.replaceAll(' ', '_') + '_' + matches[0]);
 
+    if (qty === '' || qty === 0) {
+        return false;
+    }
+
     // setSession(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
     sessionStorage.setItem(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
 
@@ -267,7 +276,7 @@ function showYourCartModal() {
                     '</div>' +
                     '<div class="col-lg-5">' +
                     '<label>Quantity</label>' +
-                    '<input type="number" class="form-control" value="' + fieldValue + '" id="' + fieldName + '" onkeyup="setSession(this);\">' +
+                    '<input type="number" class="form-control add_to_cart_qty" value="' + fieldValue + '" id="' + fieldName + '" onkeyup="setSession(this);\">' +
                     '</div>');
 
         }
