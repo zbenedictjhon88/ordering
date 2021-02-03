@@ -7,7 +7,7 @@
 $(function () {
 
 //     sessionStorage.clear();
-    getAllProducts();
+//    getAllProducts();
     getCategories();
     var notifCart = Object.keys(sessionStorage).length;
 
@@ -147,7 +147,7 @@ function showBuyNowModal(id) {
     var productName = $('#product_name_' + id).text();
     $('#product_name_field').val(productName);
     $('#product_price_field').val(productPrice);
-    $('#buy_now_qty').val('');
+    $('#buy_now_qty').val(1);
     $('.buy-now-modal').modal('show');
     console.log(productName);
 }
@@ -167,9 +167,6 @@ function showAddToCartModal(id) {
 function showCheckOutModal(num, paymentMethod) {
     var buyNowQty = $('#buy_now_qty').val();
     var addToCartQty = $('.add_to_cart_qty').val();
-    if (buyNowQty === '' || addToCartQty === '' || buyNowQty === 0 || addToCartQty === 0) {
-        return false;
-    }
 
     $('#payment_method').text(paymentMethod);
     $('#receipt_order').html('');
