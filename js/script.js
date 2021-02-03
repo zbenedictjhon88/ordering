@@ -7,7 +7,7 @@
 $(function () {
 
 //     sessionStorage.clear();
-//    getAllProducts();
+    getAllProducts();
     getCategories();
     var notifCart = Object.keys(sessionStorage).length;
 
