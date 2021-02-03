@@ -1,129 +1,38 @@
 <!DOCTYPE html>
-<!-- 
-Template Name:  SmartAdmin Responsive WebApp - Template build with Twitter Bootstrap 4
-Version: 4.5.1
-Author: Sunnyat A.
-Website: http://gootbootstrap.com
-Purchase: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0?ref=myorange
-License: You must have a valid license purchased only from wrapbootstrap.com (link above) in order to legally use this theme for your project.
--->
 <html lang="en" class="root-text-sm">
     <head>
         <meta charset="utf-8">
         <title>
             Ordering System
         </title>
-        <meta name="description" content="Page Title">
+        <meta name="Mhiken Dave" content="Ordering System">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+
         <!-- Call App Mode on ios devices -->
         <meta name="apple-mobile-web-app-capable" content="yes" />
+
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no">
+
         <!-- base css -->
         <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
         <link id="appbundle" rel="stylesheet" media="screen, print" href="css/app.bundle.css">
         <link id="mytheme" rel="stylesheet" media="screen, print" href="#">
         <link id="myskin" rel="stylesheet" media="screen, print" href="css/skins/skin-master.css">
+
         <!-- Place favicon.ico in the root directory -->
         <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-        <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!-- You can add your own stylesheet here to override any styles that comes before it
-                <link rel="stylesheet" media="screen, print" href="css/your_styles.css">-->
     </head>
     <!-- BEGIN Body -->
-    <!-- Possible Classes
-
-                * 'header-function-fixed'         - header is in a fixed at all times
-                * 'nav-function-fixed'            - left panel is fixed
-                * 'nav-function-minify'			  - skew nav to maximize space
-                * 'nav-function-hidden'           - roll mouse on edge to reveal
-                * 'nav-function-top'              - relocate left pane to top
-                * 'mod-main-boxed'                - encapsulates to a container
-                * 'nav-mobile-push'               - content pushed on menu reveal
-                * 'nav-mobile-no-overlay'         - removes mesh on menu reveal
-                * 'nav-mobile-slide-out'          - content overlaps menu
-                * 'mod-bigger-font'               - content fonts are bigger for readability
-                * 'mod-high-contrast'             - 4.5:1 text contrast ratio
-                * 'mod-color-blind'               - color vision deficiency
-                * 'mod-pace-custom'               - preloader will be inside content
-                * 'mod-clean-page-bg'             - adds more whitespace
-                * 'mod-hide-nav-icons'            - invisible navigation icons
-                * 'mod-disable-animation'         - disables css based animations
-                * 'mod-hide-info-card'            - hides info card from left panel
-                * 'mod-lean-subheader'            - distinguished page header
-                * 'mod-nav-link'                  - clear breakdown of nav links
-
-                >>> more settings are described inside documentation page >>>
-    -->
     <body class="mod-bg-1 ">
+
         <!-- DOC: script to save and load page settings -->
-        <script>
-            /**
-             *	This script should be placed right after the body tag for fast execution 
-             *	Note: the script is written in pure javascript and does not depend on thirdparty library
-             **/
-            'use strict';
-            var classHolder = document.getElementsByTagName("BODY")[0],
-                    /** 
-                     * Load from localstorage
-                     **/
-                    themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-                    {},
-                    themeURL = themeSettings.themeURL || '',
-                    themeOptions = themeSettings.themeOptions || '';
-            /** 
-             * Load theme options
-             **/
-            if (themeSettings.themeOptions)
-            {
-                classHolder.className = themeSettings.themeOptions;
-                console.log("%c✔ Theme settings loaded", "color: #148f32");
-            } else
-            {
-                console.log("%c✔ Heads up! Theme settings is empty or does not exist, loading default settings...", "color: #ed1c24");
-            }
-            if (themeSettings.themeURL && !document.getElementById('mytheme'))
-            {
-                var cssfile = document.createElement('link');
-                cssfile.id = 'mytheme';
-                cssfile.rel = 'stylesheet';
-                cssfile.href = themeURL;
-                document.getElementsByTagName('head')[0].appendChild(cssfile);
-            } else if (themeSettings.themeURL && document.getElementById('mytheme'))
-            {
-                document.getElementById('mytheme').href = themeSettings.themeURL;
-            }
-            /** 
-             * Save to localstorage 
-             **/
-            var saveSettings = function ()
-            {
-                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function (item)
-                {
-                    return /^(nav|header|footer|mod|display)-/i.test(item);
-                }).join(' ');
-                if (document.getElementById('mytheme'))
-                {
-                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
-                }
-                ;
-                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
-            }
-            /** 
-             * Reset settings
-             **/
-            var resetSettings = function ()
-            {
-                localStorage.setItem("themeSettings", "");
-            }
-
-        </script>
-
+        <script src="js/doc_script.js"></script>
 
         <!-- BEGIN Page Wrapper -->
         <div class="page-wrapper">
@@ -133,8 +42,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 <aside class="page-sidebar">
                     <div class="page-logo">
                         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" onclick="getAllProducts()">
-                            <img src="img/logo.png" alt="SmartAdmin WebApp">
-                            <span class="page-logo-text mr-1">Mhiken Dave</span>s
+                            <img src="img/campany_logo.png" alt="SmartAdmin WebApp">
+                            <span class="page-logo-text mr-1">Mhiken Dave</span>
                             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
                             <!--<i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>-->
                         </a>
@@ -156,9 +65,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <i class="fal fa-angle-down"></i>
                             </a>
                         </div>
-                        <!-- 
-                                                TIP: The menu items are not auto translated. You must have a residing lang file associated with the menu saved inside dist/media/data with reference to each 'data-i18n' attribute.
-                        -->
+
                         <ul id="js-nav-menu" class="nav-menu categories">
                             <li class="nav-title">Categories</li>
                         </ul>
@@ -174,8 +81,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     <header class="page-header" role="banner">
                         <!-- we need this logo when user switches to nav-function-top -->
                         <div class="page-logo">
-                            <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-                                <img src="img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+                            <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" onclick="getAllProducts();">
+                                <img src="img/logo.png" alt="SmartAdmin WebApp">
                                 <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
                                 <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
                                 <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
@@ -215,21 +122,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         </div>
 
                         <!-- Your main content goes below here: -->
-                        <div class="row" id="products">
-                            <div class="col-lg-3">
-                                <div class="card border m-auto m-lg-0" style="max-width: 18rem;">
-                                    <img src="img/card-backgrounds/cover-3-lg.png" class="card-img-top" alt="...">                                  
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Toyo</li>
-                                        <li class="list-group-item">Price  <span class="pull-right">15</span></li>
-                                    </ul>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link" data-toggle="modal" data-target=".buy-now-modal">Buy Now</a>
-                                        <a href="#" class="card-link" data-toggle="modal" data-target=".add-to-cart-modal">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>                   
-                        </div>
+                        <div class="row" id="products"></div>
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> 
@@ -282,12 +175,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             Product Details
                                         </h4>
                                         <div class="form-group">
-                                            <label>Product Name</label>
+                                            <label>Product</label>
                                             <input type="text" class="form-control" value="" readonly="" id="product_name_field">
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" value="" readonly="" id="product_price_field">
                                         </div>
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" id="buy_now_qty">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -482,6 +379,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             </div>
         </div>
         <!-- END Page Wrapper -->
+
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
         <nav class="shortcut-menu d-none d-sm-block">
@@ -498,261 +396,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         </nav>
         <!-- END Quick Menu -->
 
-
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
-        <script type="text/javascript">
-                                            $(function () {
-
-//                                                sessionStorage.clear();
-                                                getAllProducts();
-                                                getCategories();
-                                                var notifCart = Object.keys(sessionStorage).length;
-
-                                                $('#notif_cart').text(notifCart);
-                                            });
-
-                                            function getCategories() {
-
-                                                $.ajax({
-                                                    url: 'http://localhost/ordering-api/index.php?r=site/categories',
-                                                    type: 'POST',
-                                                    success: function (res) {
-                                                        var response = JSON.parse(res);
-                                                        for (var i = 0; i < response.data.length; i++) {
-
-                                                            var idName = response.data[i]['category'].replaceAll(' ', '_');
-                                                            $('.categories').append('<li id="li_' + idName.toLowerCase() + '" class="">' +
-                                                                    '<a href="#" title="' + response.data[i]['category'] + '" id="' + idName.toLowerCase() + '" data-filter-tags="' + response.data[i]['category'].toLowerCase() + '" onclick="getProducts(this)">' +
-                                                                    '<span class="nav-link-text" data-i18n="nav.blankpage">' + response.data[i]['category'] + '</span>' +
-                                                                    '</a>' +
-                                                                    '</li>');
-                                                        }
-
-                                                    },
-                                                    error: function (error) {
-                                                        console.log("Internal Code Error.");
-                                                    }
-                                                });
-                                            }
-
-                                            function getProducts(data) {
-
-                                                $.ajax({
-                                                    url: 'http://localhost/ordering-api/index.php?r=site/products',
-                                                    type: 'GET',
-                                                    data: {'category_name': data.title},
-                                                    beforeSend: function () {
-                                                        $('#products').html('');
-                                                    },
-                                                    success: function (res) {
-
-                                                        var response = JSON.parse(res);
-
-                                                        if (response.data.length === 0) {
-                                                            $('#products').append('<div class="col-lg-12 mb-g"><div class="alert alert-warning">No products available.</div></div>');
-                                                        }
-
-                                                        for (var i = 0; i < response.data.length; i++) {
-
-                                                            $('#products').append('<div class="col-lg-3 mb-g">' +
-                                                                    '<div class="card border m-auto m-lg-0" style="max-width: 18rem;">' +
-                                                                    '<img class="card-img-top" alt="' + response.data[i]['description'] + '" id="product_photo_' + response.data[i]['id'] + '">' +
-                                                                    '<ul class="list-group list-group-flush">' +
-                                                                    '<li class="list-group-item" id="product_name_' + response.data[i]['id'] + '">' + response.data[i]['description'] + '</li>' +
-                                                                    '<li class="list-group-item">Price <span id="product_price' + response.data[i]['id'] + '" class="pull-right">₱ ' + response.data[i]['price'] + '</span></li>' +
-                                                                    '</ul>' +
-                                                                    '<div class="card-body">' +
-                                                                    '<a href="#" class="card-link" onclick=\"showBuyNowModal(' + response.data[i]['id'] + ');\">Buy Now</a>' +
-                                                                    '<a href="#" class="card-link" onclick=\"showAddToCartModal(' + response.data[i]['id'] + ');\">Add to Cart</a>' +
-                                                                    ' </div>' +
-                                                                    ' </div>' +
-                                                                    '</div>');
-
-                                                            getProductPhoto(response.data[i]['id'], 0);
-                                                        }
-
-                                                    },
-                                                    error: function (error) {
-                                                        console.log(error);
-                                                    }
-                                                });
-                                            }
-
-                                            function getAllProducts() {
-
-                                                $.ajax({
-                                                    url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
-                                                    type: 'POST',
-                                                    beforeSend: function () {
-                                                        $('#products').html('');
-                                                    },
-                                                    success: function (res) {
-
-                                                        var response = JSON.parse(res);
-                                                        for (var i = 0; i < response.data.length; i++) {
-
-                                                            $('#products').append('<div class="col-lg-3 mb-g">' +
-                                                                    '<div class="card border m-auto m-lg-0" style="max-width: 18rem;">' +
-                                                                    '<img class="card-img-top" alt="' + response.data[i]['description'] + '" id="product_photo_' + response.data[i]['id'] + '">      ' +
-                                                                    '<ul class="list-group list-group-flush">' +
-                                                                    '<li class="list-group-item" id="product_name_' + response.data[i]['id'] + '">' + response.data[i]['description'] + '</li>' +
-                                                                    '<li class="list-group-item">Price <span id="product_price' + response.data[i]['id'] + '" class="pull-right">₱ ' + response.data[i]['price'] + '</span></li>' +
-                                                                    '</ul>' +
-                                                                    ' <div class="card-body">' +
-                                                                    '<a href="#" class="card-link" onclick=\"showBuyNowModal(' + response.data[i]['id'] + ');\">Buy Now</a>' +
-                                                                    '<a href="#" class="card-link" onclick=\"showAddToCartModal(' + response.data[i]['id'] + ');\">Add to Cart</a>' +
-                                                                    ' </div>' +
-                                                                    ' </div>' +
-                                                                    '</div>');
-
-                                                            getProductPhoto(response.data[i]['id'], 0);
-                                                        }
-
-                                                    },
-                                                    error: function (error) {
-                                                        console.log(error);
-                                                    }
-                                                });
-                                            }
-
-                                            function getProductPhoto(id, num) {
-
-                                                $.ajax({
-                                                    async: false,
-                                                    url: 'http://localhost/ordering-api/index.php?r=site/productPhoto',
-                                                    type: 'POST',
-                                                    data: {'product_id': id},
-                                                    beforeSend: function () {
-                                                        // $('#products').html('');
-                                                    },
-                                                    success: function (data) {
-                                                        if (num === 0) {
-                                                            $('#product_photo_' + id).attr('src', 'data:image/jpg;base64,' + data);
-                                                        } else {
-                                                            $('#product_photo').attr('src', 'data:image/jpg;base64,' + data);
-                                                        }
-
-                                                    },
-                                                    error: function (error) {
-                                                        console.log('error');
-                                                    }
-                                                });
-                                            }
-
-                                            function showBuyNowModal(id) {
-                                                var productName = $('#product_name_' + id).text();
-                                                $('#product_name_field').val(productName);
-                                                $('.buy-now-modal').modal('show');
-                                                console.log(productName);
-                                            }
-
-                                            function showAddToCartModal(id) {
-                                                var productName = $('#product_name_' + id).text();
-                                                var productPrice = $('#product_price' + id).text();
-
-                                                getProductPhoto(id, 1);
-
-                                                $('#cart_pn_text').text(productName);
-                                                $('#cart_pr_text').text(productPrice);
-                                                $('.add-to-cart-modal').modal('show');
-                                            }
-
-                                            function showCheckOutModal(num, paymentMethod) {
-                                                $('#payment_method').text(paymentMethod);
-                                                $('#receipt_order').html('');
-                                                var totalAmount = 0;
-                                                for (var i = 0; i < Object.keys(sessionStorage).length; i++) {
-
-                                                    var fieldName = Object.keys(sessionStorage)[i];
-                                                    var fieldValue = sessionStorage.getItem(fieldName);
-
-                                                    var matches = fieldName.match(/(\d+)/);
-                                                    if (matches !== null) {
-                                                        var fn = fieldName.replaceAll('_', ' ').replaceAll(matches[0], '');
-
-                                                    }
-
-                                                    console.log('Field Name: ' + fieldName + '\nField Value: ' + fieldValue);
-
-                                                    $('#receipt_order').append('<tr>' +
-                                                            '<td>' + fn + ' <br />Quantity</td>' +
-                                                            '<td>' + matches[0] + ' <br /> x' + fieldValue + '</td>' +
-                                                            '</tr>');
-
-                                                    var amt = parseInt(matches[0]) * parseInt(fieldValue);
-                                                    var totalAmount = totalAmount + amt;
-
-                                                }
-
-                                                if (num === 0) {
-                                                    $('#receipt_order').append('<tr>' +
-                                                            '<td>Delivery Charge: </td>' +
-                                                            '<td>50</td>' +
-                                                            '</tr>');
-
-                                                    $('#receipt_order').append('<tr>' +
-                                                            '<td>Total Amount: </td>' +
-                                                            '<td>' + totalAmount + '</td>' +
-                                                            '</tr>');
-                                                }
-
-
-                                                $('.check-out-modal').modal('show');
-                                            }
-
-                                            function addToCartSession() {
-                                                var pn = $('#cart_pn_text').text();
-                                                var pr = $('#cart_pr_text').text();
-                                                var qty = $('#quantity').val();
-                                                var matches = pr.match(/(\d+)/);
-
-                                                setSession(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
-
-                                                var notifCart = Object.keys(sessionStorage).length;
-                                                $('#notif_cart').text(notifCart);
-
-                                                $('.add-to-cart-modal').modal('hide');
-                                            }
-
-                                            function showYourCartModal() {
-                                                var notifCart = Object.keys(sessionStorage).length;
-                                                if (notifCart !== 0) {
-                                                    $('#order_products').html('');
-                                                    for (var i = 0; i < Object.keys(sessionStorage).length; i++) {
-
-                                                        var fieldName = Object.keys(sessionStorage)[i];
-                                                        var fieldValue = sessionStorage.getItem(fieldName);
-
-                                                        var matches = fieldName.match(/(\d+)/);
-                                                        if (matches !== null) {
-                                                            var fn = fieldName.replaceAll('_', ' ').replaceAll(matches[0], '');
-//                                                            pn.replaceAll(' ', '_') + '_' + matches[0]
-                                                        }
-
-                                                        console.log('Field Name : ' + fieldName + '\nField Value: ' + fieldValue);
-
-                                                        $('#order_products').append(' <div class="col-lg-7">' +
-                                                                '<label>Product Name</label>' +
-                                                                '<input type="text" class="form-control" value="' + fn + '" readonly="">' +
-                                                                '</div>' +
-                                                                '<div class="col-lg-5">' +
-                                                                '<label>Quantity</label>' +
-                                                                '<input type="number" class="form-control" value="' + fieldValue + '" id="' + fieldName + '" onkeyup="setSession(this);\">' +
-                                                                '</div>');
-
-                                                    }
-
-                                                    $('.your-cart-modal').modal('show');
-                                                }
-                                            }
-
-                                            function setSession(data) {
-                                                sessionStorage.setItem(data.id, data.value);
-                                            }
-
-
-        </script>
+        <script src="js/script.js"></script>
     </body>
     <!-- END Body -->
 </html>
