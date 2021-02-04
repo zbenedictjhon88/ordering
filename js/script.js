@@ -148,6 +148,7 @@ function showBuyNowModal(id) {
     $('#product_name_field').val(productName);
     $('#product_price_field').val(productPrice);
     $('#buy_now_qty').val(1);
+    $('#oroder_type_check_out').val(1);
     $('.buy-now-modal').modal('show');
     console.log(productName);
 }
@@ -171,6 +172,8 @@ function showCheckOutModal(num, paymentMethod) {
     $('#payment_method').text(paymentMethod);
     $('#receipt_order').html('');
 
+    $('#peyment_method').val(num);
+
     var totalAmount = 0;
     var deliveryCharge = 50;
 
@@ -182,10 +185,19 @@ function showCheckOutModal(num, paymentMethod) {
     var pickUp = 1;
     if (buyNowQty !== '') {
         var productPrice = productPriceField.match(/(\d+)/);
+
         $('#receipt_order').append('<tr>' +
                 '<td>' + productNameField + ' <br />Quantity</td>' +
                 '<td>' + productPrice[0] + ' <br /> x' + buyNowQty + '</td>' +
                 '</tr>');
+
+        if (num === cashOnDelivery) {
+            totalAmount = totalAmount + 50;
+            $('#receipt_order').append('<tr>' +
+                    '<td>Delivery Charge: </td>' +
+                    '<td>' + deliveryCharge + '</td>' +
+                    '</tr>');
+        }
 
         var amt = parseInt(productPrice[0]) * buyNowQty;
         totalAmount = totalAmount + amt;
@@ -238,11 +250,11 @@ function addToCartSession() {
     console.log(pn.replaceAll(' ', '_') + '_' + matches[0]);
 
     if (qty === '' || qty === 0) {
+        messageAlert(1, 'Quantity cannot be blank.', 'quantity_status');
         return false;
     }
 
-    // setSession(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
-    sessionStorage.setItem(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
+    setSessionStorage(pn.replaceAll(' ', '_') + '_' + matches[0], qty);
 
     var notifCart = Object.keys(sessionStorage).length;
     $('#notif_cart').text(notifCart);
@@ -283,7 +295,165 @@ function showYourCartModal() {
 }
 
 function setSession(data) {
-    sessionStorage.setItem(data.id, data.value);
+    setSessionStorage(data.id, data.value);
+}
+
+function setSessionStorage(fieldName, fieldValue) {
+    sessionStorage.setItem(fieldName, fieldValue);
+}
+
+function checkOut() {
+
+    var buyNow = 1;
+
+    var orderType = $('#oroder_type_check_out').val();
+    var paymentMethod = $('#peyment_method').val();
+
+
+    if (name === '' || phone === '' || email === '' || address === '') {
+        messageAlert(1, 'Personal Information are required.', 'check_out_status');
+        return false;
+    }
+
+    if (orderType == buyNow) {
+
+        var name = $('#name').val();
+        var phone = $('#phone').val();
+        var email = $('#email').val();
+        var address = $('#address').val();
+
+        if (name === '' || phone === '' || email === '' || address === '') {
+            messageAlert(1, 'Personal Information are required.', 'check_out_status');
+            return false;
+        }
+
+        var formdata = {};
+
+        var productField = $('#product_name_field').val();
+        var priceField = $('#product_price_field').val();
+        var price = priceField.match(/(\d+)/);
+        var qty = $('#buy_now_qty').val();
+
+        formdata['name'] = name;
+        formdata['phone'] = phone;
+        formdata['email'] = email;
+        formdata['address'] = address;
+        formdata['product'] = productField;
+        formdata['price'] = price[0];
+        formdata['quantity'] = qty;
+        formdata['paymentMethod'] = paymentMethod;
+
+        var apiurl = 'http://localhost/ordering-api/index.php?r=site/buyNow';
+        submitData(formdata, apiurl);
+        setTimeout(function () {
+            location.reload();
+        }, 3000);
+    } else {
+
+        var name = $('#name_ac').val();
+        var phone = $('#phone_ac').val();
+        var email = $('#email_ac').val();
+        var address = $('#address_ac').val();
+
+        if (name === '' || phone === '' || email === '' || address === '') {
+            messageAlert(1, 'Personal Information are required.', 'check_out_status');
+            return false;
+        }
+
+        var formdata = {};
+
+        formdata['name'] = name;
+        formdata['phone'] = phone;
+        formdata['email'] = email;
+        formdata['address'] = address;
+
+        $.ajax({
+            url: 'http://localhost/ordering-api/index.php?r=site/addToCartCustomerInfo',
+            type: 'POST',
+            data: formdata,
+            beforeSend: function () {},
+            success: function (res) {
+                var data = JSON.parse(res);
+
+                var arrayCustomerID = [];
+                updateArrayKeyValue(arrayCustomerID, 'customer_id', data.id);
+
+                if (data.isError === 1) {
+                    messageAlert(data.isError, data.message);
+                    return false;
+                }
+
+                var customer_id = arrayCustomerID['customer_id'];
+                for (var i = 0; i < Object.keys(sessionStorage).length; i++) {
+
+                    var fieldName = Object.keys(sessionStorage)[i];
+                    var fieldValue = sessionStorage.getItem(fieldName);
+                    var field = fieldName.match(/(\d+)/);
+                    if (field != null) {
+                        var price = field[0];
+                    }
+
+                    var products = fieldName.replaceAll('_', ' ').replaceAll(price, '');
+
+                    formdata['customer_id'] = customer_id;
+                    formdata['paymentMethod'] = paymentMethod;
+                    formdata['product'] = products;
+                    formdata['price'] = price;
+                    formdata['quantity'] = fieldValue;
+
+                    submitData(formdata, 'http://localhost/ordering-api/index.php?r=site/addToCartCustomerOrders');
+                    sessionStorage.clear();
+                }
+
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
+            },
+            error: function (error) {
+                console.log('error');
+            }
+        });
+    }
+}
+
+function submitData(formdata, apiurl) {
+    console.log(apiurl);
+    $.ajax({
+        url: apiurl,
+        type: 'POST',
+        data: formdata,
+        success: function (res) {
+            console.log(res);
+            var data = JSON.parse(res);
+            messageAlert(data.isError, data.message, 'check_out_status');
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+function updateArrayKeyValue(array, key, value) {
+    array[key] = value;
+}
+
+function messageAlert(statusID, message, idName) {
+    var status;
+
+    status = 'alert-success';
+    if (statusID === 1) {
+        status = 'alert-danger';
+    }
+
+    $('#' + idName).html('<div class="alert ' + status + '">' +
+            message +
+            '</div>');
+
+    setTimeout(function () {
+        $('#check_out_status').html('');
+    }, 3000);
+
 }
 
 
