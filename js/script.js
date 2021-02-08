@@ -18,7 +18,7 @@ function getCategories() {
 
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
-        url: 'orderingapi.42web.io/ordering-api/index.php?r=site/categories:80',
+        url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
         type: 'POST',
         success: function (res) {
             var response = JSON.parse(res);
@@ -43,7 +43,7 @@ function getProducts(data) {
 
     $.ajax({
         //url: 'http://localhost/ordering-api/index.php?r=site/products',
-        url: 'orderingapi.42web.io/ordering-api/index.php?r=site/products:80',
+        url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/products',
         type: 'GET',
         data: {'category_name': data.title},
         beforeSend: function () {
@@ -87,7 +87,7 @@ function getAllProducts() {
 
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
-        url: 'www.orderingapi.42web.io/ordering-api/index.php?r=site/allProducts',
+        url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/allProducts',
         type: 'POST',
         beforeSend: function () {
             $('#products').html('');
