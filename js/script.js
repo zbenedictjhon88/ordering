@@ -20,6 +20,8 @@ function getCategories() {
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
         type: 'POST',
+        crossDomain: true,
+        async: false,
         success: function (res) {
             var response = JSON.parse(res);
             for (var i = 0; i < response.data.length; i++) {
