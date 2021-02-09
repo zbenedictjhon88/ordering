@@ -19,10 +19,9 @@ function getCategories() {
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
         type: 'POST',
+        crossDomain: true,
+        dataType: 'jsonp',
         success: function (res) {
             var response = JSON.parse(res);
             for (var i = 0; i < response.data.length; i++) {
@@ -47,11 +46,10 @@ function getProducts(data) {
     $.ajax({
         //url: 'http://localhost/ordering-api/index.php?r=site/products',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/products',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
         type: 'GET',
         data: {'category_name': data.title},
+        crossDomain: true,
+        dataType: 'jsonp',
         beforeSend: function () {
             $('#products').html('');
         },
@@ -94,10 +92,9 @@ function getAllProducts() {
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/allProducts',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
         type: 'POST',
+        crossDomain: true,
+        dataType: 'jsonp',
         beforeSend: function () {
             $('#products').html('');
         },
@@ -136,12 +133,10 @@ function getProductPhoto(id, num) {
         async: false,
         // url: 'http://localhost/ordering-api/index.php?r=site/productPhoto',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/productPhoto',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
         type: 'POST',
         data: {'product_id': id},
-//        dataType: "jsonp",
+        crossDomain: true,
+        dataType: 'jsonp',
         beforeSend: function () {
             // $('#products').html('');
         },
@@ -388,6 +383,8 @@ function checkOut() {
             url: 'http://localhost/ordering-api/index.php?r=site/addToCartCustomerInfo',
             type: 'POST',
             data: formdata,
+            crossDomain: true,
+            dataType: 'jsonp',
             beforeSend: function () {},
             success: function (res) {
                 var data = JSON.parse(res);
@@ -439,6 +436,8 @@ function submitData(formdata, apiurl) {
         url: apiurl,
         type: 'POST',
         data: formdata,
+        crossDomain: true,
+        dataType: 'jsonp',
         success: function (res) {
             console.log(res);
             var data = JSON.parse(res);
