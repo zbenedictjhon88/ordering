@@ -19,8 +19,10 @@ function getCategories() {
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         type: 'POST',
-//        dataType: "jsonp",
         success: function (res) {
             var response = JSON.parse(res);
             for (var i = 0; i < response.data.length; i++) {
@@ -45,9 +47,11 @@ function getProducts(data) {
     $.ajax({
         //url: 'http://localhost/ordering-api/index.php?r=site/products',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/products',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         type: 'GET',
         data: {'category_name': data.title},
-//        dataType: "jsonp",
         beforeSend: function () {
             $('#products').html('');
         },
@@ -90,8 +94,10 @@ function getAllProducts() {
     $.ajax({
         // url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/allProducts',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         type: 'POST',
-//        dataType: "jsonp",
         beforeSend: function () {
             $('#products').html('');
         },
@@ -130,6 +136,9 @@ function getProductPhoto(id, num) {
         async: false,
         // url: 'http://localhost/ordering-api/index.php?r=site/productPhoto',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/productPhoto',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         type: 'POST',
         data: {'product_id': id},
 //        dataType: "jsonp",
