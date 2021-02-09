@@ -20,7 +20,7 @@ function getCategories() {
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
         type: 'POST',
-        dataType: "jsonp",
+//        dataType: "jsonp",
         success: function (res) {
             var response = JSON.parse(res);
             for (var i = 0; i < response.data.length; i++) {
@@ -47,7 +47,7 @@ function getProducts(data) {
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/products',
         type: 'GET',
         data: {'category_name': data.title},
-        dataType: "jsonp",
+//        dataType: "jsonp",
         beforeSend: function () {
             $('#products').html('');
         },
@@ -91,7 +91,7 @@ function getAllProducts() {
         // url: 'http://localhost/ordering-api/index.php?r=site/allProducts',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/allProducts',
         type: 'POST',
-        dataType: "jsonp",
+//        dataType: "jsonp",
         beforeSend: function () {
             $('#products').html('');
         },
@@ -132,7 +132,7 @@ function getProductPhoto(id, num) {
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/productPhoto',
         type: 'POST',
         data: {'product_id': id},
-        dataType: "jsonp",
+//        dataType: "jsonp",
         beforeSend: function () {
             // $('#products').html('');
         },
