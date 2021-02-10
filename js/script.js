@@ -17,16 +17,11 @@ $(function () {
 function getCategories() {
 
     $.ajax({
-        headers: {
-            'Access-Control-Allow-Credentials': true,
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-            'Access-Control-Allow-Headers': 'application/json',
-        },
+        type: 'POST',
+        crossDomain: true,
+        dataType: 'jsonp',
         // url: 'http://localhost/ordering-api/index.php?r=site/categories',
         url: 'http://orderingapi.42web.io/ordering-api/index.php?r=site/categories',
-        type: 'POST',
-
         success: function (res) {
             var response = JSON.parse(res);
             for (var i = 0; i < response.data.length; i++) {
